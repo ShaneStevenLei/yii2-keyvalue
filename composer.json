@@ -1,0 +1,25 @@
+{
+    "name": "stevenlei/yii2-keyvalue",
+    "description": "KeyValue",
+    "type": "yii2-extension",
+    "keywords": [
+        "yii2",
+        "extension",
+        "KeyValue"
+    ],
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "stevenlei",
+            "email": "shanestevenlei@gmail.com"
+        }
+    ],
+    "require": {
+        "yiisoft/yii2": "~2.0.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "stevenlei\\keyvalue\\": ""
+        }
+    }
+}
