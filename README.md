@@ -16,7 +16,7 @@ php composer.phar require --prefer-dist stevenlei/yii2-keyvalue "*"
 or add
 
 ```
-"stevenlei/yii2-keyvalue": "*"
+"stevenlei/yii2-keyvalue": "^1.0.0"
 ```
 
 to the require section of your `composer.json` file.
@@ -25,7 +25,82 @@ to the require section of your `composer.json` file.
 Usage
 -----
 
-Once the extension is installed, simply use it in your code by  :
+Configuration
 
-```php
-<?= \stevenlei\keyvalue\AutoloadExample::widget(); ?>```
+Add `cache` configuration:
+
+Use `FileCache`
+
+```
+return [
+    'components' => [
+        'cache' => [
+            'class' => 'yii\caching\FileCache',
+        ],
+    ]
+]
+```
+
+or `Memcache`
+
+```
+return [
+    'components' => [
+        'class'        => 'yii\caching\MemCache',
+            'keyPrefix'    => '',
+            'useMemcached' => true,
+            'servers'      => [
+                [
+                    'host' => '127.0.0.1',
+                    'port' => 11211,
+                    //'weight' => 60
+                ],
+        ],
+    ]
+]
+```
+
+ or `Redis`
+ 
+
+```
+return [
+    'components' => [
+        'class' => 'yii\redis\Cache',
+            'redis' => [
+                'hostname' => '127.0.0.1',
+                'port' => 6379,
+                'database' => 0,
+            ]
+        ]
+    ]
+]
+```
+
+
+Add modules configuration:
+
+```
+return [
+    'modules'    => [
+        'kv'     => [
+            'class' => 'stevenlei\keyvalue\Module',
+        ],
+    ],
+];
+```
+
+migrations:
+
+```
+yii migrate --migrationPath=@stevenlei/keyvalue/migrations
+```
+
+You can then access KeyValue manager through the following URL:
+
+```
+http://localhost/kv/key-value/index
+```
+
+
+

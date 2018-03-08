@@ -2,10 +2,10 @@
 use yii\helpers\Html;
 
 /* @var $this yii\web\View */
-/* @var $model common\models\KeyValue */
+/* @var $model stevenlei\keyvalue\models\KeyValue */
 
-$this->title = 'Create Key Value';
-$this->params['breadcrumbs'][] = ['label' => 'Key Values', 'url' => ['index']];
+$this->title                   = '创建KeyValue';
+$this->params['breadcrumbs'][] = ['label' => 'KeyValue', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="key-value-create">

@@ -1,12 +1,12 @@
 <?php
-namespace stevenlei\keyvalue\controller;
+namespace stevenlei\keyvalue\controllers;
 
-use common\modules\keyvalue\models\KeyValue;
-use common\modules\keyvalue\models\KeyValueSearch;
+use stevenlei\keyvalue\models\KeyValue;
+use stevenlei\keyvalue\models\KeyValueSearch;
+use Yii;
 use yii\base\UserException;
 use yii\filters\VerbFilter;
 use yii\web\Controller;
-use Yii;
 use yii\web\NotFoundHttpException;
 
 class KeyValueController extends Controller
@@ -77,11 +77,11 @@ class KeyValueController extends Controller
     {
         $model = $this->findModel($id);
 
-        Yii::$app->cache->delete(KeyValue::getCacheKey($model->key_value_key));
+        Yii::$app->cache->delete(KeyValue::getCacheKey($model->key));
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            Yii::$app->cache->delete(KeyValue::getCacheKey($model->key_value_key));
+            Yii::$app->cache->delete(KeyValue::getCacheKey($model->key));
 
-            return $this->redirect(['view', 'id' => $model->key_value_id]);
+            return $this->redirect(['view', 'id' => $model->id]);
         } else {
             return $this->render('update', [
                 'model' => $model,
@@ -92,7 +92,7 @@ class KeyValueController extends Controller
     public function actionDelete($id)
     {
         $model = $this->findModel($id);
-        Yii::$app->cache->delete(KeyValue::getCacheKey($model->key_value_key));
+        Yii::$app->cache->delete(KeyValue::getCacheKey($model->key));
         $model->delete();
 
         return $this->redirect(['index']);

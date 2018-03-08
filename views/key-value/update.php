@@ -1,14 +1,14 @@
 <?php
-
+use stevenlei\keyvalue\assets\KvAsset;
 use yii\helpers\Html;
 
 /* @var $this yii\web\View */
-/* @var $model common\models\KeyValue */
+/* @var $model stevenlei\keyvalue\models\KeyValue */
 
-$this->title = 'Update Key Value: ' . $model->key_value_id;
-$this->params['breadcrumbs'][] = ['label' => 'Key Values', 'url' => ['index']];
-$this->params['breadcrumbs'][] = ['label' => $model->key_value_id, 'url' => ['view', 'id' => $model->key_value_id]];
-$this->params['breadcrumbs'][] = 'Update';
+$this->title                   = '更新：' . $model->key;
+$this->params['breadcrumbs'][] = ['label' => 'KeyValue', 'url' => ['index']];
+$this->params['breadcrumbs'][] = ['label' => $model->id, 'url' => ['view', 'id' => $model->id]];
+$this->params['breadcrumbs'][] = '更新';
 ?>
 <div class="key-value-update">
 

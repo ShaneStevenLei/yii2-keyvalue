@@ -1,19 +1,16 @@
 <?php
+use stevenlei\keyvalue\assets\KvAsset;
 use yii\helpers\Html;
 use yii\widgets\DetailView;
 
 /* @var $this yii\web\View */
 /* @var $model \stevenlei\keyvalue\models\KeyValue */
 
-$this->title                   = $model->id;
-$this->params['breadcrumbs'][] = ['label' => 'Key Value', 'url' => ['index']];
+$this->title                   = $model->key;
+$this->params['breadcrumbs'][] = ['label' => 'KeyValue', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
-$this->registerCssFile('/layer/skin/default/layer.css');
-$this->registerJsFile('/layer/layer.js', ['depends' => 'backend\assets\AdminLteAsset']);
+KvAsset::register($this);
 ?>
-
-<script src="/js/utils.js"></script>
-
 <div class="key_value-view">
 
     <h1><?= Html::encode($this->title) ?></h1>
@@ -27,8 +24,8 @@ $this->registerJsFile('/layer/layer.js', ['depends' => 'backend\assets\AdminLteA
                 'method'  => 'post',
             ],
         ]) ?>
-        <?= Html::a('继续添加', ['/key-value/create'], ['class' => 'btn btn-info']) ?>
-        <?= Html::a('返回列表', ['/key-value/index'], ['class' => 'btn btn-warning']) ?>
+        <?= Html::a('添加', ['create'], ['class' => 'btn btn-info']) ?>
+        <?= Html::a('返回', ['index'], ['class' => 'btn btn-warning']) ?>
     </p>
 
     <?= DetailView::widget([
@@ -37,9 +34,9 @@ $this->registerJsFile('/layer/layer.js', ['depends' => 'backend\assets\AdminLteA
             'id',
             'key',
             [
-                'label'  => 'Value',
-                'format' => 'raw',
-                'value'  => "<div  style='word-break: break-all;word-wrap: break-word'><textarea  onclick='copy()' style='width: 100%;resize:none;' rows='10' id='source'>" . $model->value . '</textarea></div>',
+                'attribute' => 'value',
+                'format'    => 'raw',
+                'value'     => "<div  style='word-break: break-all;word-wrap: break-word'><textarea  onclick='copy()' style='width: 100%;resize:none;' rows='10' id='source'>" . $model->value . '</textarea></div>',
             ],
             'memo:ntext',
             'status',
@@ -51,13 +48,67 @@ $this->registerJsFile('/layer/layer.js', ['depends' => 'backend\assets\AdminLteA
     ]) ?>
 
 </div>
-
 <script>
+    <?php $this->beginBlock('js_import') ?>
     function copy() {
-        copyToClipboard(document.getElementById("source"));
+        copyToClipboard($('#source'));
         layer.msg("复制成功", {icon: 6});
     }
 
+    function copyToClipboard(elem) {
+        // create hidden text element, if it doesn't already exist
+        var targetId = "_hiddenCopyText_";
+        var isInput = elem.tagName === "INPUT" || elem.tagName === "TEXTAREA";
+        var origSelectionStart, origSelectionEnd;
+        if (isInput) {
+            // can just use the original source element for the selection and copy
+            target = elem;
+            origSelectionStart = elem.selectionStart;
+            origSelectionEnd = elem.selectionEnd;
+        } else {
+            // must use a temporary form element for the selection and copy
+            target = document.getElementById(targetId);
+            if (!target) {
+                var target = document.createElement("textarea");
+                target.style.position = "absolute";
+                target.style.left = "-9999px";
+                target.style.top = "0";
+                target.id = targetId;
+                document.body.appendChild(target);
+            }
+            target.textContent = elem.textContent;
+        }
+        // select the content
+        var currentFocus = document.activeElement;
+        target.focus();
+        target.setSelectionRange(0, target.value.length);
+
+        // copy the selection
+        var succeed;
+        try {
+            succeed = document.execCommand("copy");
+        } catch (e) {
+            succeed = false;
+        }
+        // restore original focus
+        if (currentFocus && typeof currentFocus.focus === "function") {
+            currentFocus.focus();
+        }
+
+        if (isInput) {
+            // restore prior selection
+            elem.setSelectionRange(origSelectionStart, origSelectionEnd);
+        } else {
+            // clear temporary content
+            target.textContent = "";
+        }
+        return succeed;
+    }
+
     $("table:eq(0) th").css("width", "10%");
+    <?php
+    $this->endBlock();
+    $this->registerJs($this->blocks ['js_import'], \yii\web\View::POS_END);
+    ?>
 </script>
 

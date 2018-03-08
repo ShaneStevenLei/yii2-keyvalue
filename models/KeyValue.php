@@ -39,11 +39,19 @@ class KeyValue extends ActiveRecord
     public function rules()
     {
         return [
-            [['key', 'created_user_id', 'updated_user_id'], 'required'],
+            [['key', 'created_user_id', 'updated_user_id', 'status'], 'required'],
             [['value', 'memo', 'status'], 'string'],
             [['created_user_id', 'updated_user_id'], 'integer'],
             [['created_at', 'updated_at'], 'safe'],
             [['key'], 'string', 'max' => 100],
+        ];
+    }
+
+    public function getStatus()
+    {
+        return [
+            self::STATUS_ACTIVE   => '激活',
+            self::STATUS_INACTIVE => '未激活',
         ];
     }
 
@@ -57,7 +65,7 @@ class KeyValue extends ActiveRecord
             'key'             => '键',
             'value'           => '值',
             'memo'            => '备注',
-            'status'          => '状态：active-激活，inactive-未激活',
+            'status'          => '状态',
             'created_user_id' => '创建人员',
             'updated_user_id' => '更新人员',
             'created_at'      => '创建时间',

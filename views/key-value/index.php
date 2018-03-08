@@ -1,14 +1,15 @@
 <?php
+use stevenlei\keyvalue\assets\SearchAsset;
 use yii\grid\GridView;
 use yii\widgets\LinkPager;
 
 /* @var $this yii\web\View */
+/* @var $searchModel stevenlei\keyvalue\models\KeyValueSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title                   = 'Key Value';
+$this->title                   = 'KeyValue';
 $this->params['breadcrumbs'][] = $this->title;
-$this->registerCssFile('/css/common-search.css', ['depends' => 'backend\assets\AppAsset']);
-$this->registerJsFile('/js/common-search.js', ['depends' => 'backend\assets\AdminLteAsset']);
+SearchAsset::register($this);
 ?>
 <section class="panel panel-default section-search">
     <header class="panel-heading search-options">搜索条件
@@ -22,37 +23,36 @@ $this->registerJsFile('/js/common-search.js', ['depends' => 'backend\assets\Admi
             'dataProvider'   => $dataProvider,
             'columns'        => [
                 ['class' => 'yii\grid\ActionColumn'],
-                'key_value_id',
-                'key_value_key',
+                'key',
                 [
-                    'attribute'      => 'key_value_value',
+                    'attribute'      => 'value',
                     'contentOptions' => [
                         'style' => 'width:100px; word-break: break-all; word-wrap: break-word;',
                         'class' => 'text-left;',
                     ],
-                    'value'          => function ($data) {
-                        if (strlen($data->key_value_value) <= 100) {
-                            return $data->key_value_value;
+                    'value'          => function ($item) {
+                        if (strlen($item->value) <= 100) {
+                            return $item->value;
                         } else {
-                            return substr($data->key_value_value, 0, 100) . ' ...';
+                            return substr($item->value, 0, 100) . ' ...';
                         }
                     },
                 ],
-                'key_value_memo:ntext',
+                'memo:ntext',
                 [
-                    'attribute' => 'key_value_status',
+                    'attribute' => 'status',
                     'value'     => function ($item) use ($searchModel) {
-                        if (key_exists($item->key_value_status, $searchModel->getStatus())) {
-                            return $searchModel->getStatus()[$item->key_value_status];
+                        if (key_exists($item->status, $searchModel->getStatus())) {
+                            return $searchModel->getStatus()[$item->status];
                         }
 
                         return '未知';
                     },
                 ],
-                'key_value_create_user',
-                'key_value_update_user',
-                'key_value_create_at',
-                'key_value_update_at',
+                'created_user_id',
+                'updated_user_id',
+                'created_at',
+                'updated_at',
             ],
             'layout'         => "{summary}\n{items}\n{summary}",
             'summaryOptions' => [

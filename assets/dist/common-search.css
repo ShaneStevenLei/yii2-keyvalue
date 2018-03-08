@@ -1,0 +1,244 @@
+.panel {
+    margin-top: 15px;
+}
+
+.input-sm {
+    width: 120px;
+}
+
+.input-s {
+    width: 200px;
+}
+
+.input-s-lg {
+    width: 250px;
+}
+
+.input-lg {
+    height: 45px;
+}
+
+table th, td {
+    word-break: keep-all;
+    white-space: nowrap;
+    padding: 0 0.5em;
+}
+
+.search-options {
+    padding: 5px;
+    font-size: 1em;
+}
+
+.section-search .form-group .search-btn, .reset-btn {
+    width: 420px;
+    margin-bottom: 10px;
+}
+
+.loading-modal .modal_wrapper {
+    display: table;
+    height: 100%;
+    margin: 0px auto;
+}
+
+.loading-modal .modal-dialog {
+    display: table-cell;
+    vertical-align: middle;
+}
+
+.panel-body .input-sm, .form-horizontal .form-group-sm .form-control {
+    width: 200px !important;
+    height: 25px;
+    padding: 5px 10px;
+    margin: 0 10px 10px 0;
+    font-size: 12px;
+    line-height: 1.5;
+    border-radius: 2px;
+}
+
+.wrap {
+    padding: 15px !important;
+    margin: 0px -10px -60px;
+}
+
+.panel-body .btn-sm {
+    height: 25px;
+    padding: 5px 10px;
+    margin: 0 10px 10px 0;
+    font-size: 12px;
+    border-radius: 2px;
+}
+
+.panel-body select.input-sm {
+    height: 25px;
+    line-height: 30px;
+    font-size: 12px;
+}
+
+.panel-body {
+    padding: 0;
+}
+
+.panel-body .form-group .search-btn, .reset-btn {
+    height: 25px;
+    font-size: 12px;
+}
+
+@media (min-width: 500px) and (max-width: 1139px) {
+    .panel-body .btn-sm {
+        width: 150px;
+    }
+}
+
+@media (min-width: 1140px) {
+    .panel-body .btn-sm {
+        width: 200px;
+    }
+}
+
+.checkbox {
+    position: relative;
+    display: block;
+    min-height: 20px;
+    margin: 0;
+}
+
+
+.search-options:hover {
+    cursor: pointer;
+}
+
+@media (min-width: 500px) and (max-width: 1139px) {
+    .section-search .form-group .form-control, .chosen-container {
+        margin-right: 10px;
+        margin-bottom: 10px;
+        width: 150px;
+    }
+}
+
+@media (min-width: 1140px) {
+    .section-search .form-group .form-control, .chosen-container {
+        margin-right: 10px;
+        margin-bottom: 10px;
+        width: 200px;
+    }
+}
+.section-search .form-group select{
+    margin: 0;
+}
+.section-search .form-group .search-btn, .reset-btn{
+    width: 420px;
+    margin-bottom: 10px;
+}
+.loading-modal .modal_wrapper{
+    display: table;
+    height: 100%;
+    margin: 0px auto;
+}
+.loading-modal .modal-dialog{
+    display: table-cell;
+    vertical-align: middle;
+}
+
+.sk-wave {
+    margin: 40px auto;
+    width: 50px;
+    height: 40px;
+    text-align: center;
+    font-size: 10px;
+}
+.sk-wave .sk-rect {
+    background-color: #fff;
+    height: 100%;
+    width: 6px;
+    display: inline-block;
+    -webkit-animation: sk-waveStretchDelay 1.2s infinite ease-in-out;
+    animation: sk-waveStretchDelay 1.2s infinite ease-in-out;
+}
+.sk-wave .sk-rect1 {
+    -webkit-animation-delay: -1.2s;
+    animation-delay: -1.2s;
+}
+.sk-wave .sk-rect2 {
+    -webkit-animation-delay: -1.1s;
+    animation-delay: -1.1s;
+}
+.sk-wave .sk-rect3 {
+    -webkit-animation-delay: -1s;
+    animation-delay: -1s;
+}
+.sk-wave .sk-rect4 {
+    -webkit-animation-delay: -0.9s;
+    animation-delay: -0.9s;
+}
+.sk-wave .sk-rect5 {
+    -webkit-animation-delay: -0.8s;
+    animation-delay: -0.8s;
+}
+
+@-webkit-keyframes sk-waveStretchDelay {
+    0%, 40%, 100% {
+        -webkit-transform: scaleY(0.4);
+        transform: scaleY(0.4);
+    }
+    20% {
+        -webkit-transform: scaleY(1);
+        transform: scaleY(1);
+    }
+}
+
+@keyframes sk-waveStretchDelay {
+    0%, 40%, 100% {
+        -webkit-transform: scaleY(0.4);
+        transform: scaleY(0.4);
+    }
+    20% {
+        -webkit-transform: scaleY(1);
+        transform: scaleY(1);
+    }
+}
+.vertical-middle {
+    vertical-align: middle !important;
+}
+
+.disabled-input-control {
+    display: block;
+    width: 100%;
+    padding: 6px 12px;
+    font-size: 1em;
+    height: 30px;
+    line-height: 1.42857143;
+    color: #555;
+    background-image: none;
+    border: none;
+}
+
+.input-control {
+    display: block;
+    width: 100%;
+    padding: 6px 12px;
+    font-size: 1em;
+    height: 30px;
+    line-height: 1.42857143;
+    color: #555;
+    background-image: none;
+    border: dashed 1px #ddd;
+}
+
+.area-control {
+    display: block;
+    width: 100%;
+    height: 50px;
+    padding: 6px 12px;
+    font-size: 1.25em;
+    line-height: 1.42857143;
+    color: #555;
+    background-image: none;
+    border: dashed 1px #ddd;
+    resize: none;
+}
+
+.area-control:focus, .input-control:focus {
+    -webkit-box-shadow: none;
+    box-shadow: none;
+    border: 1px solid #006dcc;
+}
